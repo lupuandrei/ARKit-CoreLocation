@@ -181,15 +181,32 @@ extension ARCLViewController {
             return
         }
 
-        // 2. If there is a route, show that
-        if let routes = routes {
-            sceneLocationView.addRoutes(routes: routes)
-        } else {
-            // 3. If not, then show the
-            buildDemoData().forEach {
-                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
-            }
-        }
+      let coord1 = CLLocationCoordinate2D(latitude: 44.308556, longitude: 23.813549)
+      let coord2 = CLLocationCoordinate2D(latitude: 44.308555, longitude: 23.813887)
+      let coord3 = CLLocationCoordinate2D(latitude: 44.308798, longitude: 23.814944)
+      let coord4 = CLLocationCoordinate2D(latitude: 44.309126, longitude: 23.815121)
+      
+      let coord5 = CLLocationCoordinate2D(latitude: 44.309593, longitude: 23.815213)
+      let coord6 = CLLocationCoordinate2D(latitude: 44.309953, longitude: 23.815239)
+      let points = [coord1, coord2, coord3, coord4, coord5, coord6]
+      
+      let polyline = MKPolyline(coordinates: points, count: points.count)
+      sceneLocationView.addPolylines([polyline])
+      
+      
+      /*
+       //    // 2. If there is a route, show that
+       if let routes = routes {
+       //      sceneLocationView.addRoutes(routes: routes)
+       //      let polylines = routes.map { $0.polyline }
+       } else {
+       // 3. If not, then show the
+       buildDemoData().forEach {
+       sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: $0)
+       }
+       }
+       
+       */
     }
 
     /// Builds the location annotations for a few random objects, scattered across the country
